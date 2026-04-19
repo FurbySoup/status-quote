@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "Statusquote Franchise Pack",
+  "description": "Schema for a statusquote franchise quote pack",
+  "type": "object",
+  "required": ["name", "key", "verbs", "phrases", "metadata"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Human-readable franchise name"
+    },
+    "key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*$",
+      "maxLength": 30,
+      "description": "Lowercase alphanumeric identifier used in commands"
+    },
+    "verbs": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 25,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 50,
+        "pattern": "^[A-Za-z0-9 ',.!?-]+$"
+      },
+      "description": "Gerund-style spinner words (e.g. Engaging, Scanning)"
+    },
+    "phrases": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 30,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 50,
+        "pattern": "^[A-Za-z0-9 ',.!?-]+$"
+      },
+      "description": "Short quote phrases (e.g. Make it so, Fascinating)"
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["source", "contributor"],
+      "properties": {
+        "source": { "type": "string" },
+        "contributor": { "type": "string" }
+      }
+    }
+  }
+}

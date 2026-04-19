@@ -1,0 +1,47 @@
+{
+  "name": "Star Wars",
+  "key": "starwars",
+  "verbs": [
+    "Channeling the Force",
+    "Lightsabering",
+    "Calculating hyperspace",
+    "Sensing a disturbance",
+    "Deflecting",
+    "Meditating",
+    "Force-pushing",
+    "Targeting exhaust ports",
+    "Awakening",
+    "Powering up",
+    "Evading",
+    "Piloting",
+    "Dueling",
+    "Scavenging",
+    "Negotiating"
+  ],
+  "phrases": [
+    "May the Force be with you",
+    "I have a bad feeling",
+    "Do or do not",
+    "The Force is strong",
+    "I am your father",
+    "These are not the droids",
+    "Stay on target",
+    "Use the Force",
+    "Its a trap",
+    "Never tell me the odds",
+    "I find your lack of faith disturbing",
+    "So be it Jedi",
+    "Let the Wookiee win",
+    "This is the way",
+    "I have the high ground",
+    "Hello there",
+    "The circle is now complete",
+    "Most impressive",
+    "Judge me by my size do you",
+    "Luminous beings are we"
+  ],
+  "metadata": {
+    "source": "Star Wars (Film franchise)",
+    "contributor": "statusquote-core"
+  }
+}

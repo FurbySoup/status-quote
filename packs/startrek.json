@@ -1,0 +1,47 @@
+{
+  "name": "Star Trek",
+  "key": "startrek",
+  "verbs": [
+    "Engaging",
+    "Scanning",
+    "Calibrating",
+    "Assimilating",
+    "Decloaking",
+    "Warping",
+    "Beaming",
+    "Hailing",
+    "Compensating",
+    "Modulating",
+    "Resequencing",
+    "Rerouting",
+    "Analyzing",
+    "Energizing",
+    "Reconfiguring"
+  ],
+  "phrases": [
+    "Make it so",
+    "Fascinating",
+    "Beam me up",
+    "Live long and prosper",
+    "Resistance is futile",
+    "Highly illogical",
+    "Set phasers to stun",
+    "Shields up",
+    "On screen",
+    "Engage",
+    "Red alert",
+    "All hands on deck",
+    "Warp speed ahead",
+    "Hailing frequencies open",
+    "Its life Jim",
+    "The needs of the many",
+    "Tea Earl Grey hot",
+    "I'm giving it all she's got",
+    "Second star to the right",
+    "There are four lights"
+  ],
+  "metadata": {
+    "source": "Star Trek (TV/Film franchise)",
+    "contributor": "statusquote-core"
+  }
+}

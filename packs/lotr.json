@@ -1,0 +1,47 @@
+{
+  "name": "Lord of the Rings",
+  "key": "lotr",
+  "verbs": [
+    "Forging",
+    "Questing",
+    "Summoning eagles",
+    "Consulting Gandalf",
+    "Crossing Mordor",
+    "Unsheathing",
+    "Rallying the fellowship",
+    "Scouting ahead",
+    "Fortifying",
+    "Enchanting",
+    "Kindling",
+    "Marshaling the Ents",
+    "Delving deep",
+    "Journeying onward",
+    "Smoking pipeweed"
+  ],
+  "phrases": [
+    "You shall not pass",
+    "One does not simply",
+    "My precious",
+    "A wizard is never late",
+    "And my axe",
+    "Fly you fools",
+    "That still only counts as one",
+    "The ring must be destroyed",
+    "Even the smallest person",
+    "All we have to decide",
+    "I would have followed you",
+    "What about second breakfast",
+    "Po-tay-toes",
+    "There is only one Lord",
+    "The beacons are lit",
+    "They have a cave troll",
+    "Not all who wander are lost",
+    "So it begins",
+    "For Frodo",
+    "The world is changed"
+  ],
+  "metadata": {
+    "source": "The Lord of the Rings (Film/Book franchise)",
+    "contributor": "statusquote-core"
+  }
+}
