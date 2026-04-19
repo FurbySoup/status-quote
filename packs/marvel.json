@@ -1,6 +1,8 @@
 {
   "name": "Marvel MCU",
   "key": "marvel",
+  "type": "franchise",
+  "tags": ["action", "scifi"],
   "verbs": [
     "Assembling",
     "Suiting up",

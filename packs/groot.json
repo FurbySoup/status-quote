@@ -1,0 +1,34 @@
+{
+  "name": "Groot",
+  "key": "groot",
+  "type": "character",
+  "tags": ["scifi", "comedy"],
+  "verbs": [
+    "I am Grooting",
+    "Growing",
+    "Branching out",
+    "Rooting around",
+    "Photosynthesizing",
+    "Extending tendrils",
+    "Sprouting",
+    "Blossoming",
+    "Cultivating",
+    "Planting seeds"
+  ],
+  "phrases": [
+    "I am Groot",
+    "I am Groot!",
+    "I am Groot?",
+    "I... am Groot",
+    "We are Groot",
+    "I am Groot.",
+    "I! AM! GROOT!",
+    "I am Groot, I am Groot",
+    "Groot!",
+    "I aaaam Groot"
+  ],
+  "metadata": {
+    "source": "Marvel Cinematic Universe (Groot)",
+    "contributor": "statusquote-core"
+  }
+}

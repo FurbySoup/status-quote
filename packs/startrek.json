@@ -1,6 +1,8 @@
 {
   "name": "Star Trek",
   "key": "startrek",
+  "type": "franchise",
+  "tags": ["scifi"],
   "verbs": [
     "Engaging",
     "Scanning",

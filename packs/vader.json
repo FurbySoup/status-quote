@@ -1,0 +1,44 @@
+{
+  "name": "Darth Vader",
+  "key": "vader",
+  "type": "character",
+  "tags": ["scifi"],
+  "verbs": [
+    "Force choking",
+    "Commanding the fleet",
+    "Hunting rebels",
+    "Altering the deal",
+    "Sensing a disturbance",
+    "Crushing the rebellion",
+    "Interrogating",
+    "Dispatching bounty hunters",
+    "Boarding the ship",
+    "Seizing control",
+    "Breathing menacingly",
+    "Executing Order 66",
+    "Pursuing the plans",
+    "Enforcing the Emperor's will",
+    "Constructing the Death Star"
+  ],
+  "phrases": [
+    "I find your lack of faith disturbing",
+    "I am your father",
+    "The Force is strong with this one",
+    "Impressive most impressive",
+    "You underestimate the power",
+    "Pray I don't alter it further",
+    "Apology accepted",
+    "Perhaps you think you are being treated unfairly",
+    "You have failed me for the last time",
+    "There is no escape",
+    "It is your destiny",
+    "I have you now",
+    "The circle is now complete",
+    "Join me and together we can rule",
+    "All too easy"
+  ],
+  "metadata": {
+    "source": "Star Wars (Darth Vader)",
+    "contributor": "statusquote-core"
+  }
+}

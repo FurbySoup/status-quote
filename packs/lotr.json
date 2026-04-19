@@ -1,6 +1,8 @@
 {
   "name": "Lord of the Rings",
   "key": "lotr",
+  "type": "franchise",
+  "tags": ["fantasy"],
   "verbs": [
     "Forging",
     "Questing",

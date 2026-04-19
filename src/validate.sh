@@ -91,6 +91,27 @@ else:
         elif not ALLOWED.match(p):
             errors.append(f'phrase[{i}] has invalid characters: \"{p}\"')
 
+# Optional fields
+aliases = pack.get('aliases', [])
+if not isinstance(aliases, list):
+    errors.append('aliases must be an array')
+else:
+    for i, a in enumerate(aliases):
+        if not isinstance(a, str) or not re.match(r'^[a-z][a-z0-9]*$', a):
+            errors.append(f'alias[{i}] must be lowercase alphanumeric: \"{a}\"')
+
+pack_type = pack.get('type')
+if pack_type is not None and pack_type not in ('franchise', 'character'):
+    errors.append(f'type must be franchise or character, got: \"{pack_type}\"')
+
+tags = pack.get('tags', [])
+if not isinstance(tags, list):
+    errors.append('tags must be an array')
+else:
+    for i, t in enumerate(tags):
+        if not isinstance(t, str) or not re.match(r'^[a-z]+$', t):
+            errors.append(f'tag[{i}] must be lowercase alpha: \"{t}\"')
+
 # Duplicates
 all_entries = verbs + phrases
 seen = set()

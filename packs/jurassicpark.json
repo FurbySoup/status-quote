@@ -1,6 +1,9 @@
 {
   "name": "Jurassic Park",
   "key": "jurassicpark",
+  "aliases": ["jp"],
+  "type": "franchise",
+  "tags": ["scifi"],
   "verbs": [
     "Sequencing DNA",
     "Hatching",

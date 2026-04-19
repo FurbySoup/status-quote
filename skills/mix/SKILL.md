@@ -1,30 +1,24 @@
 ---
 name: mix
-description: Mix multiple franchise packs together for the Claude Code spinner. Usage - /statusquote:mix startrek+starwars or /statusquote:mix lotr+matrix+marvel
+description: Alias for /statusquote:use. Mix multiple franchise or character packs. Usage - /statusquote:mix startrek+starwars or /statusquote:mix characters
 user-invocable: true
 ---
 
-# Mix multiple franchise packs
+# Mix quote packs (alias for /statusquote:use)
 
-The user wants to blend quotes from multiple franchises into their spinner.
+This command is an alias for `/statusquote:use`. It accepts the same arguments — pack keys, aliases, groups, and `+` combinations.
 
 ## Steps
 
-1. Parse `$ARGUMENTS` — split on `+` to get franchise keys. Strip whitespace from each key and lowercase them.
+Follow the exact same steps as the `use` skill:
 
-2. Validate each key has a corresponding pack file at `${CLAUDE_PLUGIN_ROOT}/packs/<key>.json`. If any pack is missing, list the missing ones and show available packs by running:
-   ```
-   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --list --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/"
-   ```
+1. Parse `$ARGUMENTS` — take the full argument string, trim whitespace, lowercase it.
 
-3. Read the user's current style preference from `~/.statusquote/config.json`. Default to `mix` if not found.
+2. Read the user's current style preference from `~/.statusquote/config.json`. Default to `mix` if not found.
 
-4. Build the apply command with multiple `--pack` flags:
+3. Run:
    ```
-   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --pack "${CLAUDE_PLUGIN_ROOT}/packs/<key1>.json" --pack "${CLAUDE_PLUGIN_ROOT}/packs/<key2>.json" --style <current_style>
+   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --keys "<arguments>" --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/" --style <current_style>
    ```
 
-5. Report to the user:
-   - Which franchises were blended
-   - Total entry count
-   - A few sample entries from each franchise
+4. Report results the same way as `/statusquote:use`.

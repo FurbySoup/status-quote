@@ -1,28 +1,37 @@
 ---
 name: use
-description: Apply a franchise quote pack to the Claude Code spinner. Replaces default spinner words with themed quotes. Usage - /statusquote:use <franchise> (e.g., startrek, starwars, lotr, matrix, sherlock, marvel, harrypotter, princessbride, jurassicpark, backtothefuture)
+description: Apply quote packs to the Claude Code spinner. Accepts pack keys, aliases, or groups. Usage - /statusquote:use startrek, /statusquote:use yoda+vader, /statusquote:use characters, /statusquote:use all, /statusquote:use fantasy+t800, /statusquote:use hp
 user-invocable: true
 ---
 
-# Apply a franchise quote pack
+# Apply quote packs
 
-The user wants to switch their Claude Code spinner words to a specific franchise.
+The user wants to set their Claude Code spinner words. This command handles single packs, multi-pack mixes, aliases, and group keywords.
+
+## Accepted input formats
+
+- Single pack key: `startrek`, `yoda`, `gandalf`
+- Alias: `hp` (Harry Potter), `bttf` (Back to the Future), `jp` (Jurassic Park), `bride` (Princess Bride), `jack` (Jack Sparrow), `t800` or `terminator`
+- Group keyword: `all`, `franchises`, `characters`, `scifi`, `fantasy`, `comedy`, `action`, `mystery`
+- Combinations with `+`: `yoda+vader`, `fantasy+t800`, `characters+startrek`
 
 ## Steps
 
-1. Parse `$ARGUMENTS` to get the franchise key (e.g., `startrek`). The key is the first argument, lowercased and stripped of whitespace.
+1. Parse `$ARGUMENTS` — take the full argument string, trim whitespace, lowercase it.
 
-2. Check if the pack file exists at `${CLAUDE_PLUGIN_ROOT}/packs/<key>.json`. If not found, run `bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --list --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/"` and show the user the available packs.
+2. Read the user's current style preference from `~/.statusquote/config.json`. Default to `mix` if not found.
 
-3. Read the user's current style preference. Check if `~/.statusquote/config.json` exists and read the `style` field. Default to `mix` if not found.
-
-4. Run the apply command:
+3. Run the apply command:
    ```
-   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --pack "${CLAUDE_PLUGIN_ROOT}/packs/<key>.json" --style <current_style>
+   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --keys "<arguments>" --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/" --style <current_style>
    ```
 
-5. Read the pack file and report to the user:
-   - Which franchise was applied
-   - How many entries were loaded
+4. If the command fails (unknown key/alias/group), show the error and run:
+   ```
+   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --list --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/"
+   ```
+
+5. On success, report:
+   - Which packs were applied and how many entries
    - Show 3-4 sample entries as a preview
-   - Mention they can change style with `/statusquote:style`
+   - Mention `/statusquote:style` to change between verbs/phrases/mix

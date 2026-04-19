@@ -186,12 +186,94 @@ fi
 echo ""
 echo "Test 8: List packs"
 LIST_OUTPUT=$(bash "$SCRIPT_DIR/apply.sh" --list --packs-dir "$PROJECT_DIR/packs/" 2>/dev/null)
-PACK_COUNT=$(echo "$LIST_OUTPUT" | grep -cE "^[a-z]" || true)
-if [ "$PACK_COUNT" -ge 10 ]; then
+PACK_COUNT=$(echo "$LIST_OUTPUT" | grep -cE "^\s+[a-z]" || true)
+if [ "$PACK_COUNT" -ge 16 ]; then
   pass "Listed $PACK_COUNT packs"
 else
-  fail "Expected 10+ packs, got $PACK_COUNT"
+  fail "Expected 16+ packs, got $PACK_COUNT"
 fi
+
+# Check groups are shown
+if echo "$LIST_OUTPUT" | grep -q "Groups:"; then
+  pass "Groups section displayed"
+else
+  fail "Groups section missing"
+fi
+
+# --- Test 9: Alias resolution ---
+echo ""
+echo "Test 9: Alias resolution"
+bash "$SCRIPT_DIR/apply.sh" --keys "hp+bttf" --packs-dir "$PROJECT_DIR/packs/" --style mix >/dev/null 2>&1 || true
+COUNT=$($PYTHON -c "
+import json
+try:
+    s=json.load(open(r'$FAKE_HOME/.claude/settings.json'))
+    print(len(s.get('spinnerVerbs', {}).get('verbs', [])))
+except:
+    print(0)
+")
+if [ "$COUNT" -eq 70 ] 2>/dev/null; then
+  pass "Aliases hp+bttf resolved: $COUNT entries (expected 70)"
+else
+  fail "Aliases hp+bttf resolved: $COUNT entries (expected 70)"
+fi
+
+# --- Test 10: Group resolution ---
+echo ""
+echo "Test 10: Group resolution"
+bash "$SCRIPT_DIR/apply.sh" --keys "characters" --packs-dir "$PROJECT_DIR/packs/" --style mix >/dev/null 2>&1 || true
+COUNT=$($PYTHON -c "
+import json
+try:
+    s=json.load(open(r'$FAKE_HOME/.claude/settings.json'))
+    print(len(s.get('spinnerVerbs', {}).get('verbs', [])))
+except:
+    print(0)
+")
+if [ "$COUNT" -eq 170 ] 2>/dev/null; then
+  pass "Group 'characters' resolved: $COUNT entries (expected 170)"
+else
+  fail "Group 'characters' resolved: $COUNT entries (expected 170)"
+fi
+
+# --- Test 11: All keyword ---
+echo ""
+echo "Test 11: All packs"
+bash "$SCRIPT_DIR/apply.sh" --keys "all" --packs-dir "$PROJECT_DIR/packs/" --style mix >/dev/null 2>&1 || true
+COUNT=$($PYTHON -c "
+import json
+try:
+    s=json.load(open(r'$FAKE_HOME/.claude/settings.json'))
+    print(len(s.get('spinnerVerbs', {}).get('verbs', [])))
+except:
+    print(0)
+")
+if [ "$COUNT" -eq 520 ] 2>/dev/null; then
+  pass "All packs: $COUNT entries (expected 520)"
+else
+  fail "All packs: $COUNT entries (expected 520)"
+fi
+
+# --- Test 12: Mixed group + key ---
+echo ""
+echo "Test 12: Group + key mix"
+bash "$SCRIPT_DIR/apply.sh" --keys "fantasy+t800" --packs-dir "$PROJECT_DIR/packs/" --style mix >/dev/null 2>&1 || true
+PKEYS=$($PYTHON -c "
+import json
+try:
+    c=json.load(open(r'$FAKE_HOME/.statusquote/config.json'))
+    print(len(c.get('activePacks', [])))
+except:
+    print(0)
+")
+if [ "$PKEYS" -eq 7 ] 2>/dev/null; then
+  pass "fantasy+t800 resolved to $PKEYS packs (expected 7)"
+else
+  fail "fantasy+t800 resolved to $PKEYS packs (expected 7)"
+fi
+
+# Final reset
+bash "$SCRIPT_DIR/apply.sh" --reset >/dev/null 2>&1 || true
 
 # Cleanup
 export HOME="$ORIG_HOME"

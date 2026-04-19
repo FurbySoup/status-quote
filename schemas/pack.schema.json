@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
-  "title": "Statusquote Franchise Pack",
-  "description": "Schema for a statusquote franchise quote pack",
+  "title": "Statusquote Quote Pack",
+  "description": "Schema for a statusquote franchise or character quote pack",
   "type": "object",
   "required": ["name", "key", "verbs", "phrases", "metadata"],
   "additionalProperties": false,
@@ -40,6 +40,21 @@
         "pattern": "^[A-Za-z0-9 ',.!?-]+$"
       },
       "description": "Short quote phrases (e.g. Make it so, Fascinating)"
+    },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z][a-z0-9]*$", "maxLength": 10 },
+      "description": "Short alternative keys (e.g. bttf for backtothefuture)"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["franchise", "character"],
+      "description": "Pack category"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z]+$" },
+      "description": "Genre/category tags for group selection (e.g. scifi, fantasy, comedy)"
     },
     "metadata": {
       "type": "object",

@@ -1,6 +1,9 @@
 {
   "name": "Back to the Future",
   "key": "backtothefuture",
+  "aliases": ["bttf"],
+  "type": "franchise",
+  "tags": ["scifi", "comedy"],
   "verbs": [
     "Reaching 88 mph",
     "Flux capacitating",

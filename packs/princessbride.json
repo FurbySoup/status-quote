@@ -1,6 +1,9 @@
 {
   "name": "The Princess Bride",
   "key": "princessbride",
+  "aliases": ["bride"],
+  "type": "franchise",
+  "tags": ["fantasy", "comedy"],
   "verbs": [
     "Storming the castle",
     "Fencing",

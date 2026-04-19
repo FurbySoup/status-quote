@@ -1,6 +1,6 @@
 # Statusquote
 
-Replace Claude Code's default spinner words ("Bamboozling", "Pondering"...) with iconic movie and TV franchise quotes.
+Replace Claude Code's default spinner words ("Bamboozling", "Pondering"...) with iconic movie, TV, and character quotes.
 
 Instead of generic processing words, see **"Engaging"**, **"There is no spoon"**, or **"Inconceivable!"** while Claude works.
 
@@ -19,32 +19,69 @@ claude --plugin-dir /path/to/statusquote
 ## Quick Start
 
 ```
-/statusquote:use startrek        # Apply Star Trek quotes
-/statusquote:use matrix          # Switch to The Matrix
-/statusquote:mix starwars+lotr   # Blend franchises
-/statusquote:style verbs         # Gerund-style only ("Engaging", "Scanning")
-/statusquote:style phrases       # Quote phrases only ("Make it so", "Use the Force")
-/statusquote:style mix           # Both combined (default)
-/statusquote:list                # Show available packs
-/statusquote:reset               # Restore Claude Code defaults
+/statusquote:use startrek              # Apply Star Trek quotes
+/statusquote:use yoda+vader            # Mix character packs
+/statusquote:use characters            # All character packs
+/statusquote:use fantasy               # All fantasy-tagged packs
+/statusquote:use all                   # Everything (520 entries)
+/statusquote:use hp                    # Alias for harrypotter
+/statusquote:style verbs               # Gerund-style only ("Engaging", "Scanning")
+/statusquote:style phrases             # Quote phrases only ("Make it so")
+/statusquote:style mix                 # Both combined (default)
+/statusquote:list                      # Show packs, groups, and aliases
+/statusquote:reset                     # Restore Claude Code defaults
 ```
 
 ## Available Packs
 
-| Key | Franchise | Entries | Sample |
-|-----|-----------|---------|--------|
-| `startrek` | Star Trek | 35 | Engaging, Make it so, Beam me up |
-| `starwars` | Star Wars | 35 | Channeling the Force, Do or do not |
-| `lotr` | Lord of the Rings | 35 | Forging, You shall not pass |
-| `matrix` | The Matrix | 35 | Jacking in, There is no spoon |
-| `sherlock` | Sherlock Holmes | 35 | Deducing, Elementary, The game is afoot |
-| `marvel` | Marvel MCU | 35 | Assembling, I am Iron Man |
-| `harrypotter` | Harry Potter | 35 | Casting spells, Expecto Patronum |
-| `princessbride` | The Princess Bride | 35 | Storming the castle, Inconceivable |
-| `jurassicpark` | Jurassic Park | 35 | Sequencing DNA, Life finds a way |
-| `backtothefuture` | Back to the Future | 35 | Flux capacitating, Great Scott |
+### Franchise Packs (10)
 
-**Total: 350 entries across 10 franchises.**
+| Key | Franchise | Entries | Alias | Sample |
+|-----|-----------|---------|-------|--------|
+| `startrek` | Star Trek | 35 | | Engaging, Make it so |
+| `starwars` | Star Wars | 35 | | Channeling the Force, Do or do not |
+| `lotr` | Lord of the Rings | 35 | | Forging, You shall not pass |
+| `matrix` | The Matrix | 35 | | Jacking in, There is no spoon |
+| `sherlock` | Sherlock Holmes | 35 | | Deducing, Elementary |
+| `marvel` | Marvel MCU | 35 | | Assembling, I am Iron Man |
+| `harrypotter` | Harry Potter | 35 | `hp` | Casting spells, Expecto Patronum |
+| `princessbride` | The Princess Bride | 35 | `bride` | Storming the castle, Inconceivable |
+| `jurassicpark` | Jurassic Park | 35 | `jp` | Sequencing DNA, Life finds a way |
+| `backtothefuture` | Back to the Future | 35 | `bttf` | Flux capacitating, Great Scott |
+
+### Character Packs (6)
+
+| Key | Character | Entries | Alias | Sample |
+|-----|-----------|---------|-------|--------|
+| `yoda` | Yoda | 30 | | Contemplating I am, Do or do not |
+| `vader` | Darth Vader | 30 | | Force choking, I find your lack of faith disturbing |
+| `gandalf` | Gandalf | 30 | | Wizarding, You shall not pass |
+| `sparrow` | Jack Sparrow | 30 | `jack` | Swashbuckling, But you have heard of me |
+| `t800` | The Terminator | 30 | `terminator` | Scanning, I'll be back |
+| `groot` | Groot | 20 | | I am Grooting, I am Groot! |
+
+**Total: 520 entries across 16 packs.**
+
+## Groups
+
+Use group keywords to apply multiple packs at once:
+
+| Group | Packs | Entries |
+|-------|-------|---------|
+| `all` | Everything | 520 |
+| `franchises` | All 10 franchise packs | 350 |
+| `characters` | All 6 character packs | 170 |
+| `scifi` | Trek, Wars, Matrix, JP, BTTF, Marvel, T-800, Vader, Yoda, Groot | 320 |
+| `fantasy` | LOTR, HP, Bride, Wars, Gandalf, Yoda | 200 |
+| `comedy` | BTTF, Bride, Sparrow, Groot | 120 |
+| `action` | Marvel, T-800 | 65 |
+| `mystery` | Sherlock | 35 |
+
+Combine groups and individual packs with `+`:
+```
+/statusquote:use fantasy+t800          # All fantasy packs + Terminator
+/statusquote:use characters+startrek   # All characters + Star Trek
+```
 
 ## How It Works
 

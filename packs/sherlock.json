@@ -1,6 +1,8 @@
 {
   "name": "Sherlock Holmes",
   "key": "sherlock",
+  "type": "franchise",
+  "tags": ["mystery"],
   "verbs": [
     "Deducing",
     "Investigating",

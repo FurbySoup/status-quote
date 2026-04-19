@@ -1,12 +1,12 @@
 ---
 name: list
-description: List all available franchise quote packs and show the currently active pack. Usage - /statusquote:list
+description: List all available quote packs, groups, aliases, and show the currently active selection. Usage - /statusquote:list
 user-invocable: true
 ---
 
-# List available franchise packs
+# List available packs and groups
 
-The user wants to see what franchise packs are available and which one is currently active.
+The user wants to see what's available and what's currently active.
 
 ## Steps
 
@@ -15,6 +15,8 @@ The user wants to see what franchise packs are available and which one is curren
    bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --list --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/"
    ```
 
+   This outputs franchise packs, character packs, and available groups with entry counts.
+
 2. Check if `~/.statusquote/config.json` exists. If it does, read it and show:
    - Currently active pack(s) from the `activePacks` field
    - Current style setting from the `style` field
@@ -22,4 +24,4 @@ The user wants to see what franchise packs are available and which one is curren
 
 3. If no config exists, note that the user is using Claude Code's default spinner words.
 
-4. Format the output as a clean table showing all available packs and highlight the active one(s).
+4. Format the output cleanly, preserving the grouped layout from apply.sh.

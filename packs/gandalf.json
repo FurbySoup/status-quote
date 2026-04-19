@@ -1,0 +1,44 @@
+{
+  "name": "Gandalf",
+  "key": "gandalf",
+  "type": "character",
+  "tags": ["fantasy"],
+  "verbs": [
+    "Wizarding",
+    "Deliberating",
+    "Conjuring",
+    "Counseling hobbits",
+    "Smiting Balrogs",
+    "Arriving precisely",
+    "Investigating",
+    "Smoking Old Toby",
+    "Rallying the free peoples",
+    "Kindling new hope",
+    "Unraveling riddles",
+    "Wielding Glamdring",
+    "Illuminating the path",
+    "Speaking to moths",
+    "Returning as the White"
+  ],
+  "phrases": [
+    "You shall not pass",
+    "A wizard is never late",
+    "Fly you fools",
+    "All we have to decide",
+    "Keep it secret keep it safe",
+    "I am a servant of the Secret Fire",
+    "Many that live deserve death",
+    "There never was much hope just a fool's hope",
+    "The board is set the pieces are moving",
+    "I will not say do not weep",
+    "So do all who live to see such times",
+    "A wizard should know better",
+    "End? No the journey doesn't end here",
+    "Even the very wise cannot see all ends",
+    "You have no power here"
+  ],
+  "metadata": {
+    "source": "The Lord of the Rings (Gandalf)",
+    "contributor": "statusquote-core"
+  }
+}

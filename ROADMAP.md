@@ -88,3 +88,19 @@
 - [ ] GitHub release v1.0.0
 
 **Status:** Pending
+
+---
+
+## Phase 8: Character Packs, Groups, Aliases, UX Overhaul
+- [x] Pack schema: add `aliases`, `type`, `tags` fields
+- [x] Add type/tags/aliases to all 10 existing franchise packs
+- [x] 6 character packs: Yoda, Vader, Gandalf, Sparrow, T-800, Groot
+- [x] `apply.sh --keys` resolution: aliases, groups, tag-based groups, `+` combos
+- [x] `--list` grouped output: franchise/character sections, groups table
+- [x] Merge `use` and `mix` skills (`mix` → alias for `use`)
+- [x] `validate.sh`: accept and validate new optional fields
+- [x] Test suite: 17 tests (alias, group, mixed resolution)
+- [x] Documentation: README, CONTRIBUTING, CLAUDE.md updated
+
+**Status:** Complete (2026-04-19)
+**Notes:** Windows path separator fix needed (`chr(92)` replacement). Carriage return stripping for Python→bash output. Groot pack uses creative variations to meet min 10 entries.

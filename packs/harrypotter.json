@@ -1,6 +1,9 @@
 {
   "name": "Harry Potter",
   "key": "harrypotter",
+  "aliases": ["hp"],
+  "type": "franchise",
+  "tags": ["fantasy"],
   "verbs": [
     "Casting spells",
     "Brewing potions",

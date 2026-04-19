@@ -1,0 +1,45 @@
+{
+  "name": "Jack Sparrow",
+  "key": "sparrow",
+  "aliases": ["jack"],
+  "type": "character",
+  "tags": ["comedy"],
+  "verbs": [
+    "Swashbuckling",
+    "Improvising",
+    "Rum-seeking",
+    "Escaping narrowly",
+    "Captaining",
+    "Charting a course",
+    "Bartering",
+    "Commandeering",
+    "Negotiating",
+    "Staggering brilliantly",
+    "Pirating",
+    "Scheming",
+    "Compass-consulting",
+    "Mutiny-avoiding",
+    "Treasure-hunting"
+  ],
+  "phrases": [
+    "But you have heard of me",
+    "Why is the rum gone",
+    "Savvy",
+    "Not all treasure is silver and gold",
+    "Take what you can",
+    "Captain Jack Sparrow",
+    "I got a jar of dirt",
+    "This is the day you almost caught me",
+    "The problem is not the problem",
+    "Bring me that horizon",
+    "Me I'm dishonest",
+    "You will always remember this day",
+    "I think we've all arrived",
+    "Hide the rum",
+    "The seas may be rough but I am the captain"
+  ],
+  "metadata": {
+    "source": "Pirates of the Caribbean (Jack Sparrow)",
+    "contributor": "statusquote-core"
+  }
+}

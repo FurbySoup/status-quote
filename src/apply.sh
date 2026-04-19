@@ -1,6 +1,6 @@
 #!/bin/bash
 # statusquote apply script
-# Reads franchise pack JSON files and writes spinnerVerbs to ~/.claude/settings.json
+# Reads franchise/character pack JSON files and writes spinnerVerbs to ~/.claude/settings.json
 # Uses Python for safe JSON manipulation
 
 set -euo pipefail
@@ -28,22 +28,27 @@ fi
 usage() {
   cat <<'USAGE'
 Usage:
+  bash apply.sh --keys <key1+key2+...> --packs-dir <directory> [--style verbs|phrases|mix]
   bash apply.sh --pack <pack.json> [--pack <pack2.json>] [--style verbs|phrases|mix]
   bash apply.sh --reset
   bash apply.sh --list --packs-dir <directory>
 
 Options:
-  --pack <file>     Path to a franchise pack JSON file (repeatable)
+  --keys <string>   Keys, aliases, or groups separated by + (e.g. startrek+yoda, characters, all)
+  --pack <file>     Path to a pack JSON file (repeatable, legacy)
+  --packs-dir <dir> Directory containing pack JSON files
   --style <mode>    Quote style: verbs, phrases, or mix (default: mix)
   --reset           Remove spinnerVerbs and restore Claude Code defaults
-  --list            List available packs
-  --packs-dir <dir> Directory containing pack JSON files (used with --list)
+  --list            List available packs, groups, and aliases
+
+Groups: all, franchises, characters, scifi, fantasy, comedy, action, mystery
 USAGE
   exit 1
 }
 
 # Parse arguments
 PACKS=()
+KEYS=""
 STYLE=""
 RESET=false
 LIST=false
@@ -54,6 +59,9 @@ while [[ $# -gt 0 ]]; do
     --pack)
       [ -z "${2:-}" ] && usage
       PACKS+=("$2"); shift 2 ;;
+    --keys)
+      [ -z "${2:-}" ] && usage
+      KEYS="$2"; shift 2 ;;
     --style)
       [ -z "${2:-}" ] && usage
       STYLE="$2"; shift 2 ;;
@@ -76,24 +84,70 @@ if $LIST; then
 import json, glob, os, sys
 
 packs_dir = sys.argv[1]
-packs = sorted(glob.glob(os.path.join(packs_dir, '*.json')))
-if not packs:
+pack_files = sorted(glob.glob(os.path.join(packs_dir, '*.json')))
+if not pack_files:
     print('No packs found in', packs_dir)
     sys.exit(0)
 
-print(f'Available packs ({len(packs)}):')
-print(f'{\"Key\":<20} {\"Name\":<25} {\"Verbs\":<8} {\"Phrases\":<8}')
-print('-' * 61)
-for p in packs:
+# Load all packs
+packs = []
+for p in pack_files:
     try:
         data = json.load(open(p))
-        key = data.get('key', '?')
-        name = data.get('name', '?')
-        v = len(data.get('verbs', []))
-        ph = len(data.get('phrases', []))
-        print(f'{key:<20} {name:<25} {v:<8} {ph:<8}')
+        data['_path'] = p
+        packs.append(data)
     except Exception as e:
         print(f'ERROR reading {os.path.basename(p)}: {e}', file=sys.stderr)
+
+# Group by type
+franchises = [p for p in packs if p.get('type') == 'franchise']
+characters = [p for p in packs if p.get('type') == 'character']
+other = [p for p in packs if p.get('type') not in ('franchise', 'character')]
+
+def print_pack(p):
+    key = p.get('key', '?')
+    name = p.get('name', '?')
+    v = len(p.get('verbs', []))
+    ph = len(p.get('phrases', []))
+    aliases = p.get('aliases', [])
+    alias_str = f'  (alias: {', '.join(aliases)})' if aliases else ''
+    print(f'  {key:<18} {name:<25} {v:>2}v  {ph:>2}p{alias_str}')
+
+if franchises:
+    print(f'Franchise Packs ({len(franchises)}):')
+    for p in franchises:
+        print_pack(p)
+
+if characters:
+    print(f'')
+    print(f'Character Packs ({len(characters)}):')
+    for p in characters:
+        print_pack(p)
+
+if other:
+    print(f'')
+    print(f'Other Packs ({len(other)}):')
+    for p in other:
+        print_pack(p)
+
+# Collect all tags
+all_tags = set()
+for p in packs:
+    all_tags.update(p.get('tags', []))
+
+total_v = sum(len(p.get('verbs', [])) for p in packs)
+total_p = sum(len(p.get('phrases', [])) for p in packs)
+
+print(f'')
+print(f'Groups:')
+print(f'  all              Everything ({total_v + total_p} entries)')
+print(f'  franchises       All franchise packs ({sum(len(p.get(\"verbs\",[]))+len(p.get(\"phrases\",[])) for p in franchises)} entries)')
+print(f'  characters       All character packs ({sum(len(p.get(\"verbs\",[]))+len(p.get(\"phrases\",[])) for p in characters)} entries)')
+for tag in sorted(all_tags):
+    matching = [p for p in packs if tag in p.get('tags', [])]
+    count = sum(len(p.get('verbs',[]))+len(p.get('phrases',[])) for p in matching)
+    names = ', '.join(p.get('key') for p in matching)
+    print(f'  {tag:<16} {names} ({count} entries)')
 " "$PACKS_DIR"
   exit 0
 fi
@@ -141,8 +195,91 @@ print('Reset complete — spinner restored to Claude Code defaults.')
   exit $?
 fi
 
+# --- RESOLVE KEYS TO PACK PATHS ---
+if [ -n "$KEYS" ] && [ -z "${PACKS[*]:-}" ]; then
+  [ -z "$PACKS_DIR" ] && { echo "ERROR: --packs-dir required with --keys" >&2; exit 1; }
+
+  RESOLVED=$($PYTHON -c "
+import json, glob, os, sys
+
+keys_str = sys.argv[1]
+packs_dir = sys.argv[2]
+
+# Load all packs
+pack_files = sorted(glob.glob(os.path.join(packs_dir, '*.json')))
+all_packs = []
+for p in pack_files:
+    try:
+        data = json.load(open(p))
+        data['_path'] = p
+        all_packs.append(data)
+    except:
+        pass
+
+# Build lookup tables
+by_key = {p['key']: p for p in all_packs}
+by_alias = {}
+for p in all_packs:
+    for a in p.get('aliases', []):
+        by_alias[a] = p
+
+# Resolve a single token
+def resolve_token(token):
+    # Built-in group: all
+    if token == 'all':
+        return list(all_packs)
+    # Built-in group: franchises
+    if token == 'franchises':
+        return [p for p in all_packs if p.get('type') == 'franchise']
+    # Built-in group: characters
+    if token == 'characters':
+        return [p for p in all_packs if p.get('type') == 'character']
+    # Tag-based group
+    tag_matches = [p for p in all_packs if token in p.get('tags', [])]
+    if tag_matches:
+        return tag_matches
+    # Direct key match
+    if token in by_key:
+        return [by_key[token]]
+    # Alias match
+    if token in by_alias:
+        return [by_alias[token]]
+    # No match
+    print(f'ERROR: Unknown pack, alias, or group: \"{token}\"', file=sys.stderr)
+    print(f'Available keys: {', '.join(sorted(by_key.keys()))}', file=sys.stderr)
+    print(f'Available aliases: {', '.join(sorted(by_alias.keys()))}', file=sys.stderr)
+    print(f'Available groups: all, franchises, characters, scifi, fantasy, comedy, action, mystery', file=sys.stderr)
+    sys.exit(2)
+
+# Split on + and resolve each token
+tokens = [t.strip().lower() for t in keys_str.split('+') if t.strip()]
+resolved_packs = []
+seen_keys = set()
+
+for token in tokens:
+    for pack in resolve_token(token):
+        if pack['key'] not in seen_keys:
+            resolved_packs.append(pack)
+            seen_keys.add(pack['key'])
+
+# Output resolved pack paths, one per line
+for p in resolved_packs:
+    print(p['_path'].replace(chr(92), '/'))
+" "$KEYS" "$PACKS_DIR")
+
+  if [ $? -ne 0 ]; then
+    exit 2
+  fi
+
+  # Read resolved paths into PACKS array (strip \r from Windows Python output)
+  while IFS= read -r line; do
+    line="${line%$'\r'}"
+    [ -n "$line" ] && PACKS+=("$line")
+  done <<< "$RESOLVED"
+fi
+
 # --- APPLY MODE ---
-[ ${#PACKS[@]} -eq 0 ] && { echo "ERROR: At least one --pack required" >&2; usage; }
+[ ${#PACKS[@]} -eq 0 ] && { echo "ERROR: At least one --pack or --keys required" >&2; usage; }
 
 # Read style from config if not specified
 if [ -z "$STYLE" ]; then

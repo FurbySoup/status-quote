@@ -1,0 +1,44 @@
+{
+  "name": "Yoda",
+  "key": "yoda",
+  "type": "character",
+  "tags": ["fantasy", "scifi"],
+  "verbs": [
+    "Contemplating I am",
+    "Sensing",
+    "Training the padawan",
+    "Meditating",
+    "Lifting X-wings",
+    "Communing with the Force",
+    "Judging by size not",
+    "Unlearning what I learned",
+    "Waiting patiently I am",
+    "Teaching",
+    "Balancing the Force",
+    "Seeing clearly now",
+    "Guiding the young",
+    "Pondering the dark side",
+    "Channeling the light"
+  ],
+  "phrases": [
+    "Do or do not",
+    "Much to learn you have",
+    "Strong with this one",
+    "Patience you must have",
+    "Begun the work has",
+    "Size matters not",
+    "Luminous beings are we",
+    "Judge me by my size do you",
+    "Already know you that which you need",
+    "Truly wonderful the mind of a child is",
+    "Fear leads to anger",
+    "Named must your fear be",
+    "Always in motion the future is",
+    "The greatest teacher failure is",
+    "When 900 years old you reach"
+  ],
+  "metadata": {
+    "source": "Star Wars (Yoda)",
+    "contributor": "statusquote-core"
+  }
+}

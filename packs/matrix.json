@@ -1,6 +1,8 @@
 {
   "name": "The Matrix",
   "key": "matrix",
+  "type": "franchise",
+  "tags": ["scifi"],
   "verbs": [
     "Jacking in",
     "Dodging bullets",

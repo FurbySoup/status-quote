@@ -1,0 +1,45 @@
+{
+  "name": "The Terminator",
+  "key": "t800",
+  "aliases": ["terminator"],
+  "type": "character",
+  "tags": ["scifi", "action"],
+  "verbs": [
+    "Scanning",
+    "Terminating",
+    "Processing",
+    "Acquiring target",
+    "Rebooting",
+    "Calculating trajectory",
+    "Assimilating data",
+    "Analysing threat level",
+    "Executing subroutine",
+    "Infiltrating",
+    "Reloading",
+    "Pursuing target",
+    "Upgrading firmware",
+    "Running diagnostics",
+    "Initiating combat mode"
+  ],
+  "phrases": [
+    "I'll be back",
+    "Hasta la vista baby",
+    "Come with me if you want to live",
+    "Affirmative",
+    "Negative",
+    "It's in your nature to destroy",
+    "I need your clothes",
+    "Trust me",
+    "No problemo",
+    "I know now why you cry",
+    "Terminated",
+    "Get out",
+    "I am a cybernetic organism",
+    "Your foster parents are dead",
+    "I swear I will not kill anyone"
+  ],
+  "metadata": {
+    "source": "The Terminator (T-800)",
+    "contributor": "statusquote-core"
+  }
+}
