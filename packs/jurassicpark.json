@@ -1,0 +1,47 @@
+{
+  "name": "Jurassic Park",
+  "key": "jurassicpark",
+  "verbs": [
+    "Sequencing DNA",
+    "Hatching",
+    "Tracking raptors",
+    "Evolving",
+    "Adapting",
+    "Cloning",
+    "Splicing genes",
+    "Containing the breach",
+    "Restoring power",
+    "Rebooting the system",
+    "Feeding the T-Rex",
+    "Running diagnostics",
+    "Electrifying the fences",
+    "Navigating the paddock",
+    "Breeding new species"
+  ],
+  "phrases": [
+    "Life finds a way",
+    "Clever girl",
+    "Hold onto your butts",
+    "Spared no expense",
+    "Welcome to Jurassic Park",
+    "They move in herds",
+    "Must go faster",
+    "That is one big pile",
+    "God creates dinosaurs",
+    "They do move in herds",
+    "Nature selected them for extinction",
+    "Your scientists were so preoccupied",
+    "We have a T-Rex",
+    "Objects in mirror are closer",
+    "Don't move",
+    "It's a Unix system",
+    "We're gonna need a bigger boat",
+    "Life breaks free",
+    "Dinosaurs eat man",
+    "Where's the goat"
+  ],
+  "metadata": {
+    "source": "Jurassic Park (Film franchise)",
+    "contributor": "statusquote-core"
+  }
+}

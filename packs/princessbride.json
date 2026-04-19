@@ -1,0 +1,47 @@
+{
+  "name": "The Princess Bride",
+  "key": "princessbride",
+  "verbs": [
+    "Storming the castle",
+    "Fencing",
+    "Scheming",
+    "Climbing the Cliffs",
+    "Dueling left-handed",
+    "Preparing to die",
+    "Tracking through the fire swamp",
+    "Wrestling giants",
+    "Building immunity",
+    "Pursuing",
+    "Plotting revenge",
+    "Sword fighting",
+    "Searching for the six-fingered man",
+    "Braving the swamp",
+    "Outsmarting Vizzini"
+  ],
+  "phrases": [
+    "Inconceivable",
+    "As you wish",
+    "Have fun storming the castle",
+    "Hello my name is Inigo Montoya",
+    "Anybody want a peanut",
+    "You keep using that word",
+    "Life is pain Highness",
+    "Mawage",
+    "Mostly dead is slightly alive",
+    "To the pain",
+    "Get used to disappointment",
+    "True love",
+    "Never go against a Sicilian",
+    "I am not left-handed",
+    "You rush a miracle man",
+    "Since I have my honor back",
+    "There will be blood tonight",
+    "Farm boy fetch me that pitcher",
+    "Death cannot stop true love",
+    "I do not think that means what you think"
+  ],
+  "metadata": {
+    "source": "The Princess Bride (Film)",
+    "contributor": "statusquote-core"
+  }
+}

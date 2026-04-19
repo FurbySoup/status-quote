@@ -1,0 +1,47 @@
+{
+  "name": "Marvel MCU",
+  "key": "marvel",
+  "verbs": [
+    "Assembling",
+    "Suiting up",
+    "Snapping",
+    "Avenging",
+    "Hulking out",
+    "Webslinging",
+    "Shielding",
+    "Blasting off",
+    "Transforming",
+    "Activating the arc reactor",
+    "Charging up",
+    "Recruiting heroes",
+    "Calibrating the suit",
+    "Summoning Mjolnir",
+    "Plotting the heist"
+  ],
+  "phrases": [
+    "I am Iron Man",
+    "Avengers assemble",
+    "I can do this all day",
+    "We're in the endgame now",
+    "I am inevitable",
+    "That's my secret I'm always angry",
+    "Puny god",
+    "On your left",
+    "I am Groot",
+    "Wakanda forever",
+    "Another day saved",
+    "We have a Hulk",
+    "Genius billionaire playboy",
+    "Whatever it takes",
+    "With great power",
+    "I understood that reference",
+    "Language",
+    "Proof that Tony Stark has a heart",
+    "Doth mother know",
+    "He's a friend from work"
+  ],
+  "metadata": {
+    "source": "Marvel Cinematic Universe (Film franchise)",
+    "contributor": "statusquote-core"
+  }
+}

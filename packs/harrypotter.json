@@ -1,0 +1,47 @@
+{
+  "name": "Harry Potter",
+  "key": "harrypotter",
+  "verbs": [
+    "Casting spells",
+    "Brewing potions",
+    "Sorting",
+    "Summoning a Patronus",
+    "Transfiguring",
+    "Conjuring",
+    "Charming",
+    "Enchanting",
+    "Apparating",
+    "Levitating",
+    "Studying at Hogwarts",
+    "Consulting Dumbledore",
+    "Dueling",
+    "Unlocking secrets",
+    "Polyjuicing"
+  ],
+  "phrases": [
+    "Mischief managed",
+    "Expelliarmus",
+    "Expecto Patronum",
+    "It does not do to dwell on dreams",
+    "After all this time Always",
+    "Wingardium Leviosa",
+    "I solemnly swear",
+    "Happiness can be found",
+    "You're a wizard",
+    "Ten points to Gryffindor",
+    "The boy who lived",
+    "Turn to page 394",
+    "Accio",
+    "Nitwit blubber oddment tweak",
+    "Not my daughter",
+    "It is our choices",
+    "Lumos",
+    "Help will always be given",
+    "Dobby is free",
+    "The wand chooses the wizard"
+  ],
+  "metadata": {
+    "source": "Harry Potter (Book/Film franchise)",
+    "contributor": "statusquote-core"
+  }
+}

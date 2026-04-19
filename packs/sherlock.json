@@ -1,0 +1,47 @@
+{
+  "name": "Sherlock Holmes",
+  "key": "sherlock",
+  "verbs": [
+    "Deducing",
+    "Investigating",
+    "Observing",
+    "Analyzing the evidence",
+    "Examining the clues",
+    "Consulting the index",
+    "Surveilling",
+    "Theorizing",
+    "Cross-referencing",
+    "Interrogating",
+    "Piecing it together",
+    "Eliminating the impossible",
+    "Studying the details",
+    "Following the trail",
+    "Reconstructing events"
+  ],
+  "phrases": [
+    "Elementary",
+    "The game is afoot",
+    "Data data data",
+    "I see everything",
+    "The plot thickens",
+    "Brilliant deduction",
+    "When you eliminate the impossible",
+    "I am Sherlock Holmes",
+    "The case is far from over",
+    "Come Watson the game is afoot",
+    "I never guess",
+    "To a great mind nothing is little",
+    "The world is full of obvious things",
+    "A most singular case",
+    "I see it I deduce it",
+    "How often have I said to you",
+    "You see but you do not observe",
+    "There is nothing more deceptive",
+    "It is a capital mistake to theorize",
+    "The answer is quite simple"
+  ],
+  "metadata": {
+    "source": "Sherlock Holmes (Books/TV/Film)",
+    "contributor": "statusquote-core"
+  }
+}
