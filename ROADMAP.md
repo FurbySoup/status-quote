@@ -7,75 +7,76 @@
 - [x] ROADMAP.md (this file)
 - [x] git init + initial commit
 
-**Status:** Complete
+**Status:** Complete (2026-04-19)
 
 ---
 
 ## Phase 1: Core Apply Script + Pack Schema
-- [ ] `schemas/pack.schema.json` — pack validation schema
-- [ ] `src/apply.sh` — reads packs, writes spinnerVerbs to settings.json (Python-backed)
-- [ ] `src/validate.sh` — standalone pack validator
-- [ ] Verify: valid pack passes, invalid rejected
-- [ ] Verify: apply preserves existing settings.json keys
-- [ ] Verify: reset removes spinnerVerbs cleanly
+- [x] `schemas/pack.schema.json` — pack validation schema
+- [x] `src/apply.sh` — reads packs, writes spinnerVerbs to settings.json (Python-backed)
+- [x] `src/validate.sh` — standalone pack validator
+- [x] Verify: valid pack passes, invalid rejected
+- [x] Verify: apply preserves existing settings.json keys
+- [x] Verify: reset removes spinnerVerbs cleanly
 
-**Status:** Pending
+**Status:** Complete (2026-04-19)
+**Notes:** Used Python for JSON manipulation instead of jq. Fixed path quoting for directories with spaces.
 
 ---
 
 ## Phase 2: First 3 Franchise Packs
-- [ ] `packs/startrek.json` (~35 entries)
-- [ ] `packs/starwars.json` (~35 entries)
-- [ ] `packs/lotr.json` (~35 entries)
-- [ ] All 3 pass validation
-- [ ] Apply works for each style mode
+- [x] `packs/startrek.json` (15 verbs, 20 phrases)
+- [x] `packs/starwars.json` (15 verbs, 20 phrases)
+- [x] `packs/lotr.json` (15 verbs, 20 phrases)
+- [x] All 3 pass validation
+- [x] Apply works for each style mode
 
-**Status:** Pending
+**Status:** Complete (2026-04-19)
 
 ---
 
 ## Phase 3: All 5 SKILL.md Slash Commands
-- [ ] `skills/use/SKILL.md` — `/statusquote:use <franchise>`
-- [ ] `skills/mix/SKILL.md` — `/statusquote:mix <f1>+<f2>`
-- [ ] `skills/list/SKILL.md` — `/statusquote:list`
-- [ ] `skills/style/SKILL.md` — `/statusquote:style verbs|phrases|mix`
-- [ ] `skills/reset/SKILL.md` — `/statusquote:reset`
-- [ ] State file config at `~/.statusquote/config.json`
-- [ ] All commands work end-to-end
+- [x] `skills/use/SKILL.md` — `/statusquote:use <franchise>`
+- [x] `skills/mix/SKILL.md` — `/statusquote:mix <f1>+<f2>`
+- [x] `skills/list/SKILL.md` — `/statusquote:list`
+- [x] `skills/style/SKILL.md` — `/statusquote:style verbs|phrases|mix`
+- [x] `skills/reset/SKILL.md` — `/statusquote:reset`
+- [x] State file config at `~/.statusquote/config.json`
+- [x] All commands work end-to-end
 
-**Status:** Pending
+**Status:** Complete (2026-04-19)
 
 ---
 
 ## Phase 4: Remaining 7 Franchise Packs
-- [ ] `packs/matrix.json`
-- [ ] `packs/sherlock.json`
-- [ ] `packs/marvel.json`
-- [ ] `packs/harrypotter.json`
-- [ ] `packs/princessbride.json`
-- [ ] `packs/jurassicpark.json`
-- [ ] `packs/backtothefuture.json`
-- [ ] All 10 packs pass validation
+- [x] `packs/matrix.json`
+- [x] `packs/sherlock.json`
+- [x] `packs/marvel.json`
+- [x] `packs/harrypotter.json`
+- [x] `packs/princessbride.json`
+- [x] `packs/jurassicpark.json`
+- [x] `packs/backtothefuture.json`
+- [x] All 10 packs pass validation
 
-**Status:** Pending
+**Status:** Complete (2026-04-19)
 
 ---
 
 ## Phase 5: Documentation
-- [ ] `CLAUDE.md` — project architecture and maintenance
-- [ ] `README.md` — full user-facing docs
-- [ ] `CONTRIBUTING.md` — pack contribution guide
+- [x] `CLAUDE.md` — project architecture and maintenance
+- [x] `README.md` — full user-facing docs
+- [x] `CONTRIBUTING.md` — pack contribution guide
 
-**Status:** Pending
+**Status:** Complete (2026-04-19)
 
 ---
 
 ## Phase 6: CI + Testing
-- [ ] `.github/workflows/validate-packs.yml`
-- [ ] `src/test.sh` — local test script
-- [ ] All tests pass locally
+- [x] `.github/workflows/validate-packs.yml`
+- [x] `src/test.sh` — local test script
+- [x] All tests pass locally (12/12)
 
-**Status:** Pending
+**Status:** Complete (2026-04-19)
 
 ---
 
