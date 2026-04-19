@@ -1,0 +1,36 @@
+name: Validate Packs
+
+on:
+  push:
+    paths:
+      - 'packs/**'
+      - 'schemas/**'
+      - 'src/validate.sh'
+  pull_request:
+    paths:
+      - 'packs/**'
+      - 'schemas/**'
+      - 'src/validate.sh'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate all packs
+        run: bash src/validate.sh packs/*.json
+
+      - name: Verify pack count
+        run: |
+          count=$(ls packs/*.json | wc -l)
+          echo "Found $count pack(s)"
+          if [ "$count" -lt 1 ]; then
+            echo "ERROR: No packs found"
+            exit 1
+          fi

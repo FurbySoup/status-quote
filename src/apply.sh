@@ -167,10 +167,8 @@ case "$STYLE" in
 esac
 
 # Validate and apply packs
-PACK_ARGS=""
 for p in "${PACKS[@]}"; do
   [ ! -f "$p" ] && { echo "ERROR: Pack file not found: $p" >&2; exit 2; }
-  PACK_ARGS="$PACK_ARGS \"$p\""
 done
 
 $PYTHON -c "
@@ -273,5 +271,5 @@ with open(config_path, 'w', encoding='utf-8') as f:
 print(f'Applied {len(spinner)} entries from {len(pack_keys)} pack(s) [{style} mode]')
 print(f'Packs: {', '.join(pack_keys)}')
 print(f'Backup saved to {backup_dir}/')
-" "$STYLE" "$SETTINGS_FILE" "$BACKUP_DIR" "$CONFIG_DIR" "$CONFIG_FILE" ${PACKS[@]}
+" "$STYLE" "$SETTINGS_FILE" "$BACKUP_DIR" "$CONFIG_DIR" "$CONFIG_FILE" "${PACKS[@]}"
 exit $?
