@@ -1,0 +1,14 @@
+{
+  "name": "statusquote",
+  "description": "Replace Claude Code spinner words with iconic movie and TV franchise quotes",
+  "version": "1.0.0",
+  "author": {
+    "name": "FurbySoup",
+    "url": "https://github.com/FurbySoup"
+  },
+  "homepage": "https://github.com/FurbySoup/statusquote",
+  "repository": "https://github.com/FurbySoup/statusquote",
+  "license": "MIT",
+  "keywords": ["spinner", "quotes", "movies", "tv", "customization", "status"],
+  "skills": "./skills/"
+}
