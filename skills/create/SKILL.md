@@ -63,24 +63,33 @@ Bad (invalid chars): "What's up, doc?" (the apostrophe after s is fine but watch
    - Verbs that capture the essence of the franchise/character
    - Variety — don't repeat the same theme across entries
 
-5. **Write the file**: Save to `~/.statusquote/packs/<key>.json`. Create the directory if it doesn't exist:
+   If the franchise or character is very obscure and you're not confident in the accuracy of the quotes, tell the user upfront — e.g., "I'm not very familiar with this one, so some of these might not be exact quotes. You'll be able to review and edit everything before saving."
+
+5. **Preview before saving**: Show the user the complete generated pack — all verbs and all phrases in a numbered list. Ask them to review it and let them know they can:
+   - Remove entries they don't like (e.g., "remove 3 and 7")
+   - Replace entries with their own (e.g., "replace phrase 5 with 'I am the danger'")
+   - Add new entries
+   - Approve as-is
+
+   Wait for the user's response. Apply any requested changes before proceeding. If they make changes, show the updated list for final confirmation.
+
+6. **Write the file**: Once the user approves, save to `~/.statusquote/packs/<key>.json`. Create the directory if it doesn't exist:
    ```bash
    mkdir -p ~/.statusquote/packs
    ```
 
-6. **Validate**: Run the validator to ensure the pack meets all requirements:
+7. **Validate**: Run the validator to ensure the pack meets all requirements:
    ```bash
    bash "${CLAUDE_PLUGIN_ROOT}/src/validate.sh" ~/.statusquote/packs/<key>.json
    ```
    If validation fails, fix the errors in the JSON and write it again, then re-validate.
 
-7. **Report results**: Show the user:
+8. **Report results**: Show the user:
    - Pack name and key
    - Number of verbs and phrases
-   - 3-4 sample entries from each category
    - File path where the pack was saved
 
-8. **Ask to apply**: Ask the user if they want to apply the pack now. If yes, run:
+9. **Ask to apply**: Ask the user if they want to apply the pack now. If yes, run:
    ```bash
    bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --keys "<key>" --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/" --custom-packs-dir ~/.statusquote/packs/ --style mix
    ```
