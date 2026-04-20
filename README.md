@@ -30,12 +30,6 @@ claude --plugin-dir /path/to/statusquote
 
 *Browse the 16 built-in franchise and character packs, then generate a brand new pack for The Office US — complete with preview, editing, and instant activation.*
 
-### Mix your favorite franchises
-
-![Mixing Lord of the Rings, Star Trek, and Star Wars](assets/status-quote-mix.gif)
-
-*The ultimate nerd spinner — blend LOTR, Star Trek, and Star Wars into one pack. Claude cycles through "Forging", "Make it so", and "Use the Force" while it works.*
-
 ## Quick Start
 
 ```
@@ -93,6 +87,10 @@ Custom packs are saved to `~/.statusquote/packs/`, persist across sessions, and 
 **520 entries across 16 built-in packs + unlimited custom packs.**
 
 ## Groups and Mixing
+
+![Mixing Lord of the Rings, Star Trek, and Star Wars](assets/status-quote-mix.gif)
+
+*The ultimate nerd spinner — blend LOTR, Star Trek, and Star Wars into one pack. Claude cycles through "Forging", "Make it so", and "Use the Force" while it works.*
 
 Apply multiple packs at once with group keywords or `+` combinations:
 
