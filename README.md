@@ -26,11 +26,15 @@ claude --plugin-dir /path/to/statusquote
 
 ### Browse packs and create your own
 
-<!-- statusquote-demo-create.gif -->
+![Listing available packs and generating a custom pack for The Office](assets/status-quote-intro.gif)
+
+*Browse the 16 built-in franchise and character packs, then generate a brand new pack for The Office US — complete with preview, editing, and instant activation.*
 
 ### Mix your favorite franchises
 
-<!-- statusquote-demo-mix.gif -->
+![Mixing Lord of the Rings, Star Trek, and Star Wars](assets/status-quote-mix.gif)
+
+*The ultimate nerd spinner — blend LOTR, Star Trek, and Star Wars into one pack. Claude cycles through "Forging", "Make it so", and "Use the Force" while it works.*
 
 ## Quick Start
 
