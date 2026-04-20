@@ -20,9 +20,9 @@ The user wants to change which type of quotes appear in the spinner.
 
 2. Check if there are currently active packs in `~/.statusquote/config.json`. If no packs are active, save the style preference and tell the user to apply a pack first with `/statusquote:use`.
 
-3. If packs are active, re-apply them with the new style. Read `activePacks` from config and build the apply command:
+3. If packs are active, re-apply them with the new style. Read `activePacks` from config and use the keys command:
    ```
-   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --pack "${CLAUDE_PLUGIN_ROOT}/packs/<key1>.json" [--pack ...] --style <new_style>
+   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --keys "<key1>+<key2>+..." --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/" --custom-packs-dir ~/.statusquote/packs/ --style <new_style>
    ```
 
 4. Report the style change and how many entries are now in the spinner.

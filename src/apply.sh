@@ -34,12 +34,13 @@ Usage:
   bash apply.sh --list --packs-dir <directory>
 
 Options:
-  --keys <string>   Keys, aliases, or groups separated by + (e.g. startrek+yoda, characters, all)
-  --pack <file>     Path to a pack JSON file (repeatable, legacy)
-  --packs-dir <dir> Directory containing pack JSON files
-  --style <mode>    Quote style: verbs, phrases, or mix (default: mix)
-  --reset           Remove spinnerVerbs and restore Claude Code defaults
-  --list            List available packs, groups, and aliases
+  --keys <string>          Keys, aliases, or groups separated by + (e.g. startrek+yoda, characters, all)
+  --pack <file>            Path to a pack JSON file (repeatable, legacy)
+  --packs-dir <dir>        Directory containing built-in pack JSON files
+  --custom-packs-dir <dir> Directory containing user-created packs (default: ~/.statusquote/packs/)
+  --style <mode>           Quote style: verbs, phrases, or mix (default: mix)
+  --reset                  Remove spinnerVerbs and restore Claude Code defaults
+  --list                   List available packs, groups, and aliases
 
 Groups: all, franchises, characters, scifi, fantasy, comedy, action, mystery
 USAGE
@@ -53,6 +54,7 @@ STYLE=""
 RESET=false
 LIST=false
 PACKS_DIR=""
+CUSTOM_PACKS_DIR="$HOME/.statusquote/packs"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -72,6 +74,9 @@ while [[ $# -gt 0 ]]; do
     --packs-dir)
       [ -z "${2:-}" ] && usage
       PACKS_DIR="$2"; shift 2 ;;
+    --custom-packs-dir)
+      [ -z "${2:-}" ] && usage
+      CUSTOM_PACKS_DIR="$2"; shift 2 ;;
     *)
       echo "Unknown option: $1" >&2; usage ;;
   esac
@@ -84,25 +89,45 @@ if $LIST; then
 import json, glob, os, sys
 
 packs_dir = sys.argv[1]
-pack_files = sorted(glob.glob(os.path.join(packs_dir, '*.json')))
-if not pack_files:
-    print('No packs found in', packs_dir)
+custom_dir = sys.argv[2]
+
+def load_packs(directory, source):
+    result = []
+    if not os.path.isdir(directory):
+        return result
+    for p in sorted(glob.glob(os.path.join(directory, '*.json'))):
+        try:
+            data = json.load(open(p))
+            data['_path'] = p
+            data['_source'] = source
+            result.append(data)
+        except Exception as e:
+            print(f'ERROR reading {os.path.basename(p)}: {e}', file=sys.stderr)
+    return result
+
+builtin = load_packs(packs_dir, 'builtin')
+custom = load_packs(custom_dir, 'custom')
+
+# Merge: custom packs override builtin with same key
+seen_keys = set()
+packs = []
+for p in custom:
+    packs.append(p)
+    seen_keys.add(p.get('key'))
+for p in builtin:
+    if p.get('key') not in seen_keys:
+        packs.append(p)
+        seen_keys.add(p.get('key'))
+
+if not packs:
+    print('No packs found')
     sys.exit(0)
 
-# Load all packs
-packs = []
-for p in pack_files:
-    try:
-        data = json.load(open(p))
-        data['_path'] = p
-        packs.append(data)
-    except Exception as e:
-        print(f'ERROR reading {os.path.basename(p)}: {e}', file=sys.stderr)
-
-# Group by type
-franchises = [p for p in packs if p.get('type') == 'franchise']
-characters = [p for p in packs if p.get('type') == 'character']
-other = [p for p in packs if p.get('type') not in ('franchise', 'character')]
+# Group by type and source
+franchises = [p for p in packs if p.get('type') == 'franchise' and p['_source'] == 'builtin']
+characters = [p for p in packs if p.get('type') == 'character' and p['_source'] == 'builtin']
+custom_packs = [p for p in packs if p['_source'] == 'custom']
+other = [p for p in packs if p['_source'] == 'builtin' and p.get('type') not in ('franchise', 'character')]
 
 def print_pack(p):
     key = p.get('key', '?')
@@ -115,19 +140,25 @@ def print_pack(p):
 
 if franchises:
     print(f'Franchise Packs ({len(franchises)}):')
-    for p in franchises:
+    for p in sorted(franchises, key=lambda x: x.get('key','')):
         print_pack(p)
 
 if characters:
     print(f'')
     print(f'Character Packs ({len(characters)}):')
-    for p in characters:
+    for p in sorted(characters, key=lambda x: x.get('key','')):
+        print_pack(p)
+
+if custom_packs:
+    print(f'')
+    print(f'Custom Packs ({len(custom_packs)}):')
+    for p in sorted(custom_packs, key=lambda x: x.get('key','')):
         print_pack(p)
 
 if other:
     print(f'')
     print(f'Other Packs ({len(other)}):')
-    for p in other:
+    for p in sorted(other, key=lambda x: x.get('key','')):
         print_pack(p)
 
 # Collect all tags
@@ -135,20 +166,24 @@ all_tags = set()
 for p in packs:
     all_tags.update(p.get('tags', []))
 
-total_v = sum(len(p.get('verbs', [])) for p in packs)
-total_p = sum(len(p.get('phrases', [])) for p in packs)
+total = sum(len(p.get('verbs', [])) + len(p.get('phrases', [])) for p in packs)
 
 print(f'')
 print(f'Groups:')
-print(f'  all              Everything ({total_v + total_p} entries)')
-print(f'  franchises       All franchise packs ({sum(len(p.get(\"verbs\",[]))+len(p.get(\"phrases\",[])) for p in franchises)} entries)')
-print(f'  characters       All character packs ({sum(len(p.get(\"verbs\",[]))+len(p.get(\"phrases\",[])) for p in characters)} entries)')
+print(f'  all              Everything ({total} entries)')
+f_count = sum(len(p.get('verbs',[]))+len(p.get('phrases',[])) for p in franchises)
+c_count = sum(len(p.get('verbs',[]))+len(p.get('phrases',[])) for p in characters)
+print(f'  franchises       All franchise packs ({f_count} entries)')
+print(f'  characters       All character packs ({c_count} entries)')
+if custom_packs:
+    cu_count = sum(len(p.get('verbs',[]))+len(p.get('phrases',[])) for p in custom_packs)
+    print(f'  custom           All custom packs ({cu_count} entries)')
 for tag in sorted(all_tags):
     matching = [p for p in packs if tag in p.get('tags', [])]
     count = sum(len(p.get('verbs',[]))+len(p.get('phrases',[])) for p in matching)
     names = ', '.join(p.get('key') for p in matching)
     print(f'  {tag:<16} {names} ({count} entries)')
-" "$PACKS_DIR"
+" "$PACKS_DIR" "$CUSTOM_PACKS_DIR"
   exit 0
 fi
 
@@ -204,17 +239,31 @@ import json, glob, os, sys
 
 keys_str = sys.argv[1]
 packs_dir = sys.argv[2]
+custom_dir = sys.argv[3]
 
-# Load all packs
-pack_files = sorted(glob.glob(os.path.join(packs_dir, '*.json')))
+# Load packs from both directories (custom overrides builtin)
+def load_dir(directory):
+    result = []
+    if not os.path.isdir(directory):
+        return result
+    for p in sorted(glob.glob(os.path.join(directory, '*.json'))):
+        try:
+            data = json.load(open(p))
+            data['_path'] = p
+            result.append(data)
+        except:
+            pass
+    return result
+
 all_packs = []
-for p in pack_files:
-    try:
-        data = json.load(open(p))
-        data['_path'] = p
-        all_packs.append(data)
-    except:
-        pass
+seen_keys = set()
+for p in load_dir(custom_dir):
+    all_packs.append(p)
+    seen_keys.add(p.get('key'))
+for p in load_dir(packs_dir):
+    if p.get('key') not in seen_keys:
+        all_packs.append(p)
+        seen_keys.add(p.get('key'))
 
 # Build lookup tables
 by_key = {p['key']: p for p in all_packs}
@@ -234,6 +283,9 @@ def resolve_token(token):
     # Built-in group: characters
     if token == 'characters':
         return [p for p in all_packs if p.get('type') == 'character']
+    # Built-in group: custom
+    if token == 'custom':
+        return [p for p in all_packs if p.get('metadata', {}).get('contributor') == 'user-generated']
     # Tag-based group
     tag_matches = [p for p in all_packs if token in p.get('tags', [])]
     if tag_matches:
@@ -265,7 +317,7 @@ for token in tokens:
 # Output resolved pack paths, one per line
 for p in resolved_packs:
     print(p['_path'].replace(chr(92), '/'))
-" "$KEYS" "$PACKS_DIR")
+" "$KEYS" "$PACKS_DIR" "$CUSTOM_PACKS_DIR")
 
   if [ $? -ne 0 ]; then
     exit 2

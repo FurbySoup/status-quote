@@ -12,7 +12,7 @@ The user wants to see what's available and what's currently active.
 
 1. Run the list command:
    ```
-   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --list --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/"
+   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --list --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/" --custom-packs-dir ~/.statusquote/packs/
    ```
 
    This outputs franchise packs, character packs, and available groups with entry counts.

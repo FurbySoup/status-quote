@@ -272,6 +272,65 @@ else
   fail "fantasy+t800 resolved to $PKEYS packs (expected 7)"
 fi
 
+# --- Test 13: Custom packs directory ---
+echo ""
+echo "Test 13: Custom packs directory"
+CUSTOM_DIR="$FAKE_HOME/.statusquote/packs"
+mkdir -p "$CUSTOM_DIR"
+cat > "$CUSTOM_DIR/testcustom.json" << 'JSON'
+{
+  "name": "Test Custom",
+  "key": "testcustom",
+  "type": "franchise",
+  "tags": ["comedy"],
+  "verbs": ["Testing","Customizing","Generating","Building","Creating","Validating","Deploying","Shipping","Launching","Iterating"],
+  "phrases": ["It works","Ship it","LGTM","Looks good to me","Tests pass","All green","Ready to merge","No bugs here","Clean build","Deployed successfully"],
+  "metadata": {"source": "Test","contributor": "user-generated"}
+}
+JSON
+bash "$SCRIPT_DIR/apply.sh" --keys "testcustom" --packs-dir "$PROJECT_DIR/packs/" --custom-packs-dir "$CUSTOM_DIR" --style mix >/dev/null 2>&1 || true
+COUNT=$($PYTHON -c "
+import json
+try:
+    s=json.load(open(r'$FAKE_HOME/.claude/settings.json'))
+    print(len(s.get('spinnerVerbs', {}).get('verbs', [])))
+except:
+    print(0)
+")
+if [ "$COUNT" -eq 20 ] 2>/dev/null; then
+  pass "Custom pack resolved: $COUNT entries (expected 20)"
+else
+  fail "Custom pack resolved: $COUNT entries (expected 20)"
+fi
+
+# --- Test 14: Custom packs in list ---
+echo ""
+echo "Test 14: Custom packs in list"
+LIST_OUT=$(bash "$SCRIPT_DIR/apply.sh" --list --packs-dir "$PROJECT_DIR/packs/" --custom-packs-dir "$CUSTOM_DIR" 2>/dev/null)
+if echo "$LIST_OUT" | grep -q "Custom Packs"; then
+  pass "Custom Packs section in list output"
+else
+  fail "Custom Packs section missing from list"
+fi
+
+# --- Test 15: All includes custom ---
+echo ""
+echo "Test 15: All keyword includes custom packs"
+bash "$SCRIPT_DIR/apply.sh" --keys "all" --packs-dir "$PROJECT_DIR/packs/" --custom-packs-dir "$CUSTOM_DIR" --style mix >/dev/null 2>&1 || true
+COUNT=$($PYTHON -c "
+import json
+try:
+    s=json.load(open(r'$FAKE_HOME/.claude/settings.json'))
+    print(len(s.get('spinnerVerbs', {}).get('verbs', [])))
+except:
+    print(0)
+")
+if [ "$COUNT" -eq 540 ] 2>/dev/null; then
+  pass "All with custom: $COUNT entries (expected 540)"
+else
+  fail "All with custom: $COUNT entries (expected 540)"
+fi
+
 # Final reset
 bash "$SCRIPT_DIR/apply.sh" --reset >/dev/null 2>&1 || true
 

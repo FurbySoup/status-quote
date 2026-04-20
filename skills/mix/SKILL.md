@@ -18,7 +18,7 @@ Follow the exact same steps as the `use` skill:
 
 3. Run:
    ```
-   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --keys "<arguments>" --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/" --style <current_style>
+   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --keys "<arguments>" --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/" --custom-packs-dir ~/.statusquote/packs/ --style <current_style>
    ```
 
 4. Report results the same way as `/statusquote:use`.

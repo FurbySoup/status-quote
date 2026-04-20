@@ -25,6 +25,8 @@ claude --plugin-dir /path/to/statusquote
 /statusquote:use fantasy               # All fantasy-tagged packs
 /statusquote:use all                   # Everything (520 entries)
 /statusquote:use hp                    # Alias for harrypotter
+/statusquote:create breaking bad        # Generate a custom pack instantly
+/statusquote:create spock              # Works for characters too
 /statusquote:style verbs               # Gerund-style only ("Engaging", "Scanning")
 /statusquote:style phrases             # Quote phrases only ("Make it so")
 /statusquote:style mix                 # Both combined (default)
@@ -82,6 +84,18 @@ Combine groups and individual packs with `+`:
 /statusquote:use fantasy+t800          # All fantasy packs + Terminator
 /statusquote:use characters+startrek   # All characters + Star Trek
 ```
+
+## Create Your Own
+
+Don't see your favorite franchise? Generate a custom pack instantly:
+
+```
+/statusquote:create breaking bad
+/statusquote:create the office
+/statusquote:create walter white
+```
+
+Claude generates the pack, validates it, and saves it to `~/.statusquote/packs/`. Custom packs are immediately available to all commands — they show up in `/statusquote:list`, work with `/statusquote:use`, and are included in the `all` and `custom` groups.
 
 ## How It Works
 

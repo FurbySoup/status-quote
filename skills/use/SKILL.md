@@ -12,7 +12,7 @@ The user wants to set their Claude Code spinner words. This command handles sing
 
 - Single pack key: `startrek`, `yoda`, `gandalf`
 - Alias: `hp` (Harry Potter), `bttf` (Back to the Future), `jp` (Jurassic Park), `bride` (Princess Bride), `jack` (Jack Sparrow), `t800` or `terminator`
-- Group keyword: `all`, `franchises`, `characters`, `scifi`, `fantasy`, `comedy`, `action`, `mystery`
+- Group keyword: `all`, `franchises`, `characters`, `custom`, `scifi`, `fantasy`, `comedy`, `action`, `mystery`
 - Combinations with `+`: `yoda+vader`, `fantasy+t800`, `characters+startrek`
 
 ## Steps
@@ -23,12 +23,12 @@ The user wants to set their Claude Code spinner words. This command handles sing
 
 3. Run the apply command:
    ```
-   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --keys "<arguments>" --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/" --style <current_style>
+   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --keys "<arguments>" --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/" --custom-packs-dir ~/.statusquote/packs/ --style <current_style>
    ```
 
 4. If the command fails (unknown key/alias/group), show the error and run:
    ```
-   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --list --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/"
+   bash "${CLAUDE_PLUGIN_ROOT}/src/apply.sh" --list --packs-dir "${CLAUDE_PLUGIN_ROOT}/packs/" --custom-packs-dir ~/.statusquote/packs/
    ```
 
 5. On success, report:

@@ -11,7 +11,8 @@ Statusquote is a Claude Code plugin that replaces the default spinner words ("Ba
 ```
 Plugin slash commands (SKILL.md) → apply.sh --keys → resolve aliases/groups → settings.json
                                         ↑
-                                    packs/*.json (type, tags, aliases)
+                          built-in: packs/*.json (type, tags, aliases)
+                          custom:   ~/.statusquote/packs/*.json (user-generated)
 ```
 
 - **SKILL.md files** instruct Claude what to do when a slash command is invoked. They parse arguments and call `apply.sh`.
@@ -48,12 +49,12 @@ bash src/test.sh
 ## Key Resolution
 
 The `--keys` flag resolves input tokens in this order:
-1. Built-in group: `all`, `franchises`, `characters`
+1. Built-in group: `all`, `franchises`, `characters`, `custom`
 2. Tag-based group: `scifi`, `fantasy`, `comedy`, `action`, `mystery`
-3. Pack key: `startrek`, `yoda`, `gandalf`
+3. Pack key: `startrek`, `yoda`, `gandalf` (checks custom packs first, then built-in)
 4. Pack alias: `hp`, `bttf`, `jp`, `bride`, `jack`, `terminator`
 
-Tokens are combined with `+` and deduplicated.
+Tokens are combined with `+` and deduplicated. Custom packs override built-in packs with the same key.
 
 ## Pack Schema
 
@@ -96,3 +97,4 @@ Full schema at `schemas/pack.schema.json`.
 | `~/.claude/settings.json` | Where spinnerVerbs is written |
 | `~/.claude/backups/` | Settings backups before each modification |
 | `~/.statusquote/config.json` | User preferences (style, active packs) |
+| `~/.statusquote/packs/` | User-generated custom packs (from /statusquote:create) |

@@ -1,8 +1,12 @@
 # Contributing to Statusquote
 
-## Adding a New Pack
+## For Personal Use
 
-Packs can be **franchise packs** (a whole show/movie series) or **character packs** (a specific character's voice).
+Use `/statusquote:create <name>` to generate any pack instantly — no PR needed. Custom packs are saved to `~/.statusquote/packs/` and immediately available to all commands.
+
+## Adding to the Built-in Set
+
+Want to add a pack that ships with the plugin for everyone? Packs can be **franchise packs** (a whole show/movie series) or **character packs** (a specific character's voice).
 
 1. Create a JSON file in `packs/` named after the franchise or character (lowercase, no spaces): e.g., `packs/doctorwho.json` or `packs/spock.json`
 
