@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-/plugin marketplace add FurbySoup/statusquote
+/plugin marketplace add FurbySoup/status-quote
 /plugin install statusquote@statusquote
 ```
 

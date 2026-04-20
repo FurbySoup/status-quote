@@ -6,8 +6,8 @@
     "name": "FurbySoup",
     "url": "https://github.com/FurbySoup"
   },
-  "homepage": "https://github.com/FurbySoup/statusquote",
-  "repository": "https://github.com/FurbySoup/statusquote",
+  "homepage": "https://github.com/FurbySoup/status-quote",
+  "repository": "https://github.com/FurbySoup/status-quote",
   "license": "MIT",
   "keywords": ["spinner", "quotes", "movies", "tv", "customization", "status"],
   "skills": "./skills/"
