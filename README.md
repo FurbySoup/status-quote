@@ -129,10 +129,6 @@ Statusquote writes to the `spinnerVerbs` setting in `~/.claude/settings.json`:
 
 A backup of your settings is saved before every change to `~/.claude/backups/`.
 
-## Contributing
-
-Want to add a pack to the built-in set? See [CONTRIBUTING.md](CONTRIBUTING.md) for the schema and guidelines. For personal use, just run `/statusquote:create` — no PR needed.
-
 ## Requirements
 
 - Claude Code with plugin support
