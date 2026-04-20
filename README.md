@@ -1,6 +1,12 @@
-# Statusquote
+<p align="center">
+  <img src="assets/logo.jpg" alt="Statusquote logo" width="200">
+</p>
 
-**Disrupt the status quo.** A Claude Code plugin that replaces the default spinner words with quotes from your favorite movies, TV shows, and characters — or generate your own for any franchise, instantly.
+<h1 align="center">Statusquote</h1>
+
+<p align="center"><strong>Disrupt the status quo.</strong></p>
+
+<p align="center">A Claude Code plugin that replaces the default spinner words with quotes from your favorite movies, TV shows, and characters — or generate your own for any franchise, instantly.</p>
 
 > *Why settle for "Bamboozling" when Claude could be "Engaging", "Force choking", or telling you "There is no spoon"?*
 
