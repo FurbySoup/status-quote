@@ -3,3 +3,15 @@ __pycache__/
 .DS_Store
 *.tmp
 *.bak
+.venv/
+venv/
+.env
+.env.local
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+.pytest_cache/
+*.log
+node_modules/

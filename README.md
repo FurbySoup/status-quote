@@ -1,8 +1,8 @@
 # Statusquote
 
-Replace Claude Code's default spinner words ("Bamboozling", "Pondering"...) with iconic movie, TV, and character quotes.
+**Disrupt the status quo.** A Claude Code plugin that replaces the default spinner words with quotes from your favorite movies, TV shows, and characters — or generate your own for any franchise, instantly.
 
-Instead of generic processing words, see **"Engaging"**, **"There is no spoon"**, or **"Inconceivable!"** while Claude works.
+> *Why settle for "Bamboozling" when Claude could be "Engaging", "Force choking", or telling you "There is no spoon"?*
 
 ## Install
 
@@ -11,30 +11,48 @@ Instead of generic processing words, see **"Engaging"**, **"There is no spoon"**
 /plugin install statusquote@statusquote
 ```
 
-Or load directly during development:
+Or load directly:
 ```bash
 claude --plugin-dir /path/to/statusquote
 ```
 
+## See It In Action
+
+### Browse packs and create your own
+
+<!-- statusquote-demo-create.gif -->
+
+### Mix your favorite franchises
+
+<!-- statusquote-demo-mix.gif -->
+
 ## Quick Start
 
 ```
-/statusquote:use startrek              # Apply Star Trek quotes
-/statusquote:use yoda+vader            # Mix character packs
-/statusquote:use characters            # All character packs
-/statusquote:use fantasy               # All fantasy-tagged packs
-/statusquote:use all                   # Everything (520 entries)
-/statusquote:use hp                    # Alias for harrypotter
-/statusquote:create breaking bad        # Generate a custom pack instantly
-/statusquote:create spock              # Works for characters too
-/statusquote:style verbs               # Gerund-style only ("Engaging", "Scanning")
-/statusquote:style phrases             # Quote phrases only ("Make it so")
-/statusquote:style mix                 # Both combined (default)
-/statusquote:list                      # Show packs, groups, and aliases
-/statusquote:reset                     # Restore Claude Code defaults
+/statusquote:use startrek              # Apply a built-in pack
+/statusquote:use yoda+vader            # Mix characters
+/statusquote:use fantasy               # Apply an entire genre
+/statusquote:create the office         # Generate any pack on the fly
+/statusquote:list                      # See everything available
+/statusquote:reset                     # Back to defaults
 ```
 
-## Available Packs
+## Create Any Pack, Instantly
+
+Statusquote ships with 16 curated packs, but you're not limited to them. Generate a pack for **any** movie, TV show, or character — Claude builds it, validates it, and makes it available immediately:
+
+```
+/statusquote:create breaking bad       # TV shows
+/statusquote:create fight club         # Movies
+/statusquote:create michael scott      # Specific characters
+/statusquote:create doctor who         # Sci-fi classics
+/statusquote:create pokemon            # Anime
+/statusquote:create the sopranos       # Drama
+```
+
+Custom packs are saved to `~/.statusquote/packs/`, persist across sessions, and work with all commands — mix them with built-in packs, include them in groups, or use `/statusquote:use custom` to apply all your creations at once.
+
+## Built-in Packs
 
 ### Franchise Packs (10)
 
@@ -62,40 +80,39 @@ claude --plugin-dir /path/to/statusquote
 | `t800` | The Terminator | 30 | `terminator` | Scanning, I'll be back |
 | `groot` | Groot | 20 | | I am Grooting, I am Groot! |
 
-**Total: 520 entries across 16 packs.**
+**520 entries across 16 built-in packs + unlimited custom packs.**
 
-## Groups
+## Groups and Mixing
 
-Use group keywords to apply multiple packs at once:
+Apply multiple packs at once with group keywords or `+` combinations:
 
-| Group | Packs | Entries |
-|-------|-------|---------|
-| `all` | Everything | 520 |
-| `franchises` | All 10 franchise packs | 350 |
-| `characters` | All 6 character packs | 170 |
-| `scifi` | Trek, Wars, Matrix, JP, BTTF, Marvel, T-800, Vader, Yoda, Groot | 320 |
-| `fantasy` | LOTR, HP, Bride, Wars, Gandalf, Yoda | 200 |
-| `comedy` | BTTF, Bride, Sparrow, Groot | 120 |
-| `action` | Marvel, T-800 | 65 |
-| `mystery` | Sherlock | 35 |
-
-Combine groups and individual packs with `+`:
-```
-/statusquote:use fantasy+t800          # All fantasy packs + Terminator
-/statusquote:use characters+startrek   # All characters + Star Trek
-```
-
-## Create Your Own
-
-Don't see your favorite franchise? Generate a custom pack instantly:
+| Group | Entries |
+|-------|---------|
+| `all` | Everything (built-in + custom) |
+| `franchises` | All 10 franchise packs |
+| `characters` | All 6 character packs |
+| `custom` | All your generated packs |
+| `scifi` | Trek, Wars, Matrix, JP, BTTF, Marvel, T-800, Vader, Yoda, Groot |
+| `fantasy` | LOTR, HP, Bride, Wars, Gandalf, Yoda |
+| `comedy` | BTTF, Bride, Sparrow, Groot |
+| `action` | Marvel, T-800 |
+| `mystery` | Sherlock |
 
 ```
-/statusquote:create breaking bad
-/statusquote:create the office
-/statusquote:create walter white
+/statusquote:use fantasy+t800          # Genre + character
+/statusquote:use characters+startrek   # Group + franchise
+/statusquote:use custom+scifi          # Your packs + a genre
 ```
 
-Claude generates the pack, validates it, and saves it to `~/.statusquote/packs/`. Custom packs are immediately available to all commands — they show up in `/statusquote:list`, work with `/statusquote:use`, and are included in the `all` and `custom` groups.
+## Style Modes
+
+Control what type of entries appear in the spinner:
+
+```
+/statusquote:style verbs               # Gerund-style only ("Engaging", "Scanning")
+/statusquote:style phrases             # Short quotes only ("Make it so", "Inconceivable")
+/statusquote:style mix                 # Both combined (default)
+```
 
 ## How It Works
 
@@ -105,26 +122,21 @@ Statusquote writes to the `spinnerVerbs` setting in `~/.claude/settings.json`:
 {
   "spinnerVerbs": {
     "mode": "replace",
-    "verbs": ["Engaging", "Scanning", "Make it so", "Fascinating", "..."]
+    "verbs": ["Engaging", "Scanning", "Make it so", "Fascinating"]
   }
 }
 ```
 
 A backup of your settings is saved before every change to `~/.claude/backups/`.
 
-## Adding Your Own Pack
+## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the pack schema and submission guidelines.
-
-```bash
-# Validate your pack
-bash src/validate.sh packs/yourpack.json
-```
+Want to add a pack to the built-in set? See [CONTRIBUTING.md](CONTRIBUTING.md) for the schema and guidelines. For personal use, just run `/statusquote:create` — no PR needed.
 
 ## Requirements
 
 - Claude Code with plugin support
-- Python 3.10+ (used for safe JSON manipulation)
+- Python 3.10+
 - Bash (Git Bash on Windows)
 
 ## License
