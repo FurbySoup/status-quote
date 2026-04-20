@@ -14,7 +14,7 @@
 
 ```bash
 /plugin marketplace add FurbySoup/status-quote
-/plugin install statusquote@statusquote
+/plugin install statusquote@status-quote
 ```
 
 Or load directly:

@@ -65,7 +65,7 @@
 ## Phase 5: Documentation
 - [x] `CLAUDE.md` — project architecture and maintenance
 - [x] `README.md` — full user-facing docs
-- [x] `CONTRIBUTING.md` — pack contribution guide
+- [x] ~~`CONTRIBUTING.md`~~ — removed in favour of `/statusquote:create`
 
 **Status:** Complete (2026-04-19)
 
@@ -100,7 +100,7 @@
 - [x] Merge `use` and `mix` skills (`mix` → alias for `use`)
 - [x] `validate.sh`: accept and validate new optional fields
 - [x] Test suite: 17 tests (alias, group, mixed resolution)
-- [x] Documentation: README, CONTRIBUTING, CLAUDE.md updated
+- [x] Documentation: README, CLAUDE.md updated
 
 **Status:** Complete (2026-04-19)
 **Notes:** Windows path separator fix needed (`chr(92)` replacement). Carriage return stripping for Python→bash output. Groot pack uses creative variations to meet min 10 entries.
